@@ -1,4 +1,4 @@
-# ForeSight Transaction Schedule
+# ForeSight Overview
 
 ForeSight is a high-performance deterministic database system that addresses these challenges with lightweight conflict prediction and informed scheduling. This is the implementation described in the paper:
 
