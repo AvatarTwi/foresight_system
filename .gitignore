@@ -1,0 +1,42 @@
+# Ignore all
+/*
+cmake/*
+
+
+## Unignore the following extensions
+!*.h
+!*.cc
+!*.cpp
+!*.sh
+!*.md
+!*.py
+
+# Unignore the following files
+!*CMakeLists.txt
+!.travis.yml
+!.gitignore
+
+# Unignore source code directories
+!benchmark/
+!cmake
+!common/
+!core/
+!database/
+!protocol/
+!scripts/
+!prescheduler/
+!ForeSight.tex
+
+prescheduler/reorder/log
+prescheduler/dependency_analysis_disposal
+prescheduler/dependency_analysis_rwset
+prescheduler/ASPN
+prescheduler/dependency_analysis/DATA/data
+prescheduler/dependency_analysis/DATA/queries
+prescheduler/dependency_analysis/DATA/tables
+prescheduler/dependency_analysis/DATA/model*
+**/.ipynb_checkpoints
+**/__pycache__
+**/logs
+**/exp
+**/figures
