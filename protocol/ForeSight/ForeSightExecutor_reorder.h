@@ -1171,7 +1171,7 @@ public:
         transactions[i]->reset();
         transactions[i]->clear_execution_bit();
         transactions[i]->abort_lock = abort;
-        transactions[i]->setup_process_requests_in_prepare_phase_bohm();
+        transactions[i]->setup_process_requests_in_prepare_phase_fallback();
         transactions[i]->execute(id);
       }
 
@@ -1183,7 +1183,7 @@ public:
   }
 
   void setup_execute_handlers(TransactionType &txn) {
-    txn.bohm_read_handler = [this, &txn](ForeSightRWKey &readKey, std::size_t tid,
+    txn.fallback_read_handler = [this, &txn](ForeSightRWKey &readKey, std::size_t tid,
                                     uint32_t key_offset) {
       auto table_id = readKey.get_table_id();
       auto partition_id = readKey.get_partition_id();

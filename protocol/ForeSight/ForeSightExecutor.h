@@ -394,7 +394,6 @@ public:
       // commit in aria
       if (transactions[i]->abort_lock == false)
         continue;
-      // commit in bohm
       if (transactions[i]->abort_read_not_ready == false)
         continue;
       if (transactions[i]->abort_no_retry)
@@ -431,7 +430,6 @@ public:
       if (transactions[i]->abort_lock == false) {
         continue;
       }
-      // commit in bohm
       if (transactions[i]->abort_read_not_ready == false)
         continue;
       // not relevant
@@ -1014,7 +1012,7 @@ public:
         transactions[i]->reset();
         transactions[i]->clear_execution_bit();
         transactions[i]->abort_lock = abort;
-        transactions[i]->setup_process_requests_in_prepare_phase_bohm();
+        transactions[i]->setup_process_requests_in_prepare_phase_fallback();
         transactions[i]->execute(id);
       }
 
@@ -1029,7 +1027,7 @@ public:
   }
 
   void setup_execute_handlers(TransactionType &txn) {
-    txn.bohm_read_handler = [this, &txn](ForeSightRWKey &readKey, std::size_t tid,
+    txn.fallback_read_handler = [this, &txn](ForeSightRWKey &readKey, std::size_t tid,
                                     uint32_t key_offset) {
       auto table_id = readKey.get_table_id();
       auto partition_id = readKey.get_partition_id();
@@ -1050,25 +1048,6 @@ public:
         ForeSightHelper::read(row, value, table->value_size());
         readKey.clear_read_request_bit();
         readKey.clear_write_lock_bit();
-        // std::atomic<uint64_t> &placeholder = *std::get<0>(row);
-        // if (context.bohm_single_spin) {
-        //   for (;;) {
-        //     bool success = BohmHelper::is_placeholder_ready(placeholder);
-        //     if (success) {
-        //       BohmHelper::read(row, value, table->value_size());
-        //       readKey.clear_read_request_bit();
-        //       break;
-        //     }
-        //   }
-        // } else {
-        //   bool success = BohmHelper::is_placeholder_ready(placeholder);
-        //   if (success) {
-        //     BohmHelper::read(row, value, table->value_size());
-        //     readKey.clear_read_request_bit();
-        //   } else {
-        //     txn.abort_read_not_ready = true;
-        //   }
-        // }
       } else {
         auto coordinatorID = partitioner->master_coordinator(partition_id);
         txn.network_size += MessageFactoryType::new_fallback_read_message(
@@ -1103,7 +1082,7 @@ public:
         auto key = writeKey.get_key();
         auto value = writeKey.get_value();
         if (partitioner->has_master_partition(partitionId) &&
-            BohmHelper::partition_id_to_worker_id(
+            ForeSightHelper::partition_id_to_worker_id(
                 partitionId, context.worker_num, context.coordinator_num) ==
                 id) {
           table->fallback_insert(key, value, t.id);

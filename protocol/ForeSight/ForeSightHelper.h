@@ -95,6 +95,13 @@ public:
     } while (!a.compare_exchange_weak(old_value, new_value));
     return true;
   }
+  
+  static std::size_t partition_id_to_worker_id(std::size_t partition_id,
+      std::size_t n_worker,
+      std::size_t n_coordinator) {
+      return partition_id / n_coordinator % n_worker;
+  }
+
 
   static uint64_t get_epoch(uint64_t value) {
     return (value >> EPOCH_OFFSET) & EPOCH_MASK;

@@ -232,7 +232,7 @@ public:
   }
 
   void 
-  setup_process_requests_in_prepare_phase_bohm() {
+  setup_process_requests_in_prepare_phase_fallback() {
     // process the reads in read-only index
     // for general reads, increment the local_read and remote_read counter.
     // the function may be called multiple times, the keys are processed in
@@ -275,7 +275,7 @@ public:
           continue;
         }
         ForeSightRWKey &readKey = readSet[i];
-        bohm_read_handler(readKey, id, i);
+        fallback_read_handler(readKey, id, i);
       }
       if (pendingResponses > 0) {
         fallback_message_flusher();
@@ -395,7 +395,7 @@ public:
   std::vector<ForeSightRWKey> readSet, writeSet;
   
   // read_key, id, key_offset
-  std::function<void(ForeSightRWKey &, std::size_t, std::size_t)> bohm_read_handler;
+  std::function<void(ForeSightRWKey &, std::size_t, std::size_t)> fallback_read_handler;
 
   // processed a request?
   std::function<std::size_t()> fallback_remote_request_handler;

@@ -2,9 +2,9 @@
 
 ForeSight is a high-performance deterministic database system that addresses these challenges with lightweight conflict prediction and informed scheduling. This is the implementation described in the paper:
 
-ForeSight: A Predictive-scheduling Deterministic Database
+ForeSight: A Predictive-scheduling Deterministic Database [[link]]()
 
-![image-20250815230010226](https://typora-picpool-1314405309.cos.ap-nanjing.myqcloud.com/img/image-20250815230010226.png)
+![image-20250822163627714](https://typora-picpool-1314405309.cos.ap-nanjing.myqcloud.com/img/image-20250822163627714.png)
 
 ## Source Code Structure
 
