@@ -2,7 +2,7 @@
 
 ForeSight is a high-performance deterministic database system that addresses these challenges with lightweight conflict prediction and informed scheduling. This is the implementation described in the paper:
 
-ForeSight: A Predictive-scheduling Deterministic Database [[link]]()
+[ForeSight: A Predictive-scheduling Deterministic Database](https://arxiv.org/abs/2508.17375)
 
 ![image-20250822163627714](https://typora-picpool-1314405309.cos.ap-nanjing.myqcloud.com/img/image-20250822163627714.png)
 
@@ -70,10 +70,31 @@ git clone https://github.com/AvatarTwi/foresight_ddb.git
 ./bench_tpcc --logtostderr=1 --id=0 --servers="ip:port" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --fsFB_lock_manager=1 --protocol=ForeSight --partition_num=108
 ```
 
+### Dataset
+[YSCB](https://github.com/brianfrankcooper/YCSB): a single-table key-value schema with ten columns;
+
+[TPC-C](http://www.tpc.org/tpcc/): an order-processing workload with ten warehouse partitions;
+
+[TPCH](http://www.tpc.org/tpch/): with a scale factor of 1, containing 22 tables and about 1 GB of data; 
+
+[IMDB](https://www.imdb.com/interfaces/): a movie review dataset with 21 tables and 7 GB of data;
+
+[GAS](https://archive.ics.uci.edu/ml/datasets/Gas+sensor+array+temperature+modulation): a gas sensor dataset containing 3.84 million records with eight selected attributes.
+
+
+
 ## Reference
 
 If you use this implementation in your research, please cite:
 
 ```
-
+@misc{huang2025foresightpredictiveschedulingdeterministicdatabase,
+      title={ForeSight: A Predictive-Scheduling Deterministic Database}, 
+      author={Junfang Huang and Yu Yan and Hongzhi Wang and Yingze Li and Jinghan Lin},
+      year={2025},
+      eprint={2508.17375},
+      archivePrefix={arXiv},
+      primaryClass={cs.DB},
+      url={https://arxiv.org/abs/2508.17375}, 
+}
 ```
