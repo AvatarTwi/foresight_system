@@ -68,6 +68,11 @@ git clone https://github.com/AvatarTwi/foresight_ddb.git
 
 ```sh
 ./bench_tpcc --logtostderr=1 --id=0 --servers="ip:port" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --fsFB_lock_manager=1 --protocol=ForeSight --partition_num=108
+./bench_tpcc --logtostderr=1 --id=0 --servers="192.168.75.125:26" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --protocol=Aria --partition_num=108
+./bench_tpcc --logtostderr=1 --id=0 --servers="192.168.75.125:26" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --ariaFB_lock_manager=1 --protocol=AriaFB --partition_num=108
+./bench_tpcc --logtostderr=1 --id=0 --servers="192.168.75.125:26" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --protocol=BOHM --partition_num=108
+./bench_tpcc --logtostderr=1 --id=0 --servers="192.168.75.125:26" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --protocol=PWV --partition_num=108
+./bench_tpcc --logtostderr=1 --id=0 --servers="192.168.75.125:26" --threads=4 --batch_size=500 --query=mixed --neworder_dist=10 --payment_dist=15 --same_batch=False --protocol=Calvin --partition_num=108
 ```
 
 ### Dataset
